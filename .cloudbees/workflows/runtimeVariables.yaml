@@ -21,4 +21,4 @@ jobs:
         env:
           OUTPUT1: ${{needs.my-job-1.outputs.my-output}}
         run: |
-          echo "my-job-1 said: $OUTPUT1"
+          echo "my-job-1 said: $OUTPUT1 "
