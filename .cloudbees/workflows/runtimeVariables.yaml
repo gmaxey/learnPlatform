@@ -1,0 +1,24 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: Runtime variable exploration
+on:
+  push:
+    branches:
+      - "**"
+jobs:
+  my-job-1:
+    outputs:
+      my-output: ${{ steps.step1.outputs.greeting }}
+    steps:
+      - name: My first step
+        uses: docker://alpine:3.18
+        id: step1
+        run: echo "hello world" > "$CLOUDBEES_OUTPUTS/greeting"
+  my-job-2:
+    needs: my-job-1
+    steps:
+      - uses: docker://alpine:3.18
+        env:
+          OUTPUT1: ${{needs.my-job-1.outputs.my-output}}
+        run: |
+          echo "my-job-1 said: $OUTPUT1"
