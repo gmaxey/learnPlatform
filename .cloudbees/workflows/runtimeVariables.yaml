@@ -18,7 +18,5 @@ jobs:
     needs: my-job-1
     steps:
       - uses: docker://alpine:3.18
-        env:
-          OUTPUT1: ${{needs.my-job-1.outputs.my-output}}
         run: |
-          echo "my-job-1 said: $OUTPUT1 "
+          echo "my-job-1 said: ${{needs.my-job-1.outputs.my-output}}"
