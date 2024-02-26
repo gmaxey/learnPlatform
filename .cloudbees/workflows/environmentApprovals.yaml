@@ -6,9 +6,15 @@ on:
     branches:
       - "**"
 jobs:
+  build:
+    steps:
+      - name: Fake build
+        uses: docker://alpine:3.18
+        run: echo Building
   deploy:
     environment: test
     steps:
       - name: Fake deploy
         uses: docker://alpine:3.18
         run: echo Deploying to test
+    needs: build
