@@ -1,6 +1,6 @@
 apiVersion: automation.cloudbees.io/v1alpha1
 kind: workflow
-name: Environment approval
+name: Environment approvals
 on:
   push:
     branches:
